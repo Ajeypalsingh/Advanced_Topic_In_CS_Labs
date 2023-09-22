@@ -1,0 +1,49 @@
+﻿@model BankManagement.Models.Account
+
+<h2>Transaction</h2>
+
+<div class="col-md-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InitialBalance)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.InitialBalance)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="col-md-4">
+    <form asp-action="PerformTransaction" method="post">
+        <div class="form-group">
+            <input type="hidden" value="@ViewBag.amount" name="amount" />
+            <input type="hidden" value="@Model.Id" name="id" />
+            <label for="amount" class="control-label">Amount:</label>
+            <input type="number" id="amount" name="transactionAmount" class="form-control" />
+            @Html.ValidationMessageFor(model => model.InitialBalance, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Deposit" name="submitbtn" class="btn btn-primary" />
+            <input type="submit" value="Withdraw" name="submitbtn" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<a asp-action="Index" >Back To Accounts</a>
+
+
+
